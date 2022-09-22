@@ -21,11 +21,22 @@ namespace pet_hotel.Controllers
 
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
+        // * GET all pets to show on table
         [HttpGet]
         public IEnumerable<Pet> GetPets() {
-            return new List<Pet>();
+            Console.WriteLine("GET ALL PETS");
+            // return new List<Pet>();
+            // return _context.Pets.Include(Owner => Owner.ownedBy);
+            return _context.Pets;
         }
 
+        // * POST route 
+        public IActionResult Post(Pet pet) {
+            _context.Add(pet);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(Post), new {id = pet.id}, pet);
+        }
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
