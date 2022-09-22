@@ -26,11 +26,11 @@ namespace pet_hotel.Controllers
         public IEnumerable<Pet> GetPets() {
             Console.WriteLine("GET ALL PETS");
             // return new List<Pet>();
-            // return _context.Pets.Include(Owner => Owner.ownedBy);
-            return _context.Pets;
+            return _context.Pets.Include(Owner => Owner.ownedBy);
+            // return _context.Pets;
         }
 
-        // * POST route 
+        [HttpPost]
         public IActionResult Post(Pet pet) {
             _context.Add(pet);
             _context.SaveChanges();

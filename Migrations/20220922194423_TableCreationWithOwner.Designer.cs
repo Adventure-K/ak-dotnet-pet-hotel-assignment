@@ -9,8 +9,8 @@ using pet_hotel.Models;
 namespace dotnet_bakery.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220922183023_UpdateTwoLines")]
-    partial class UpdateTwoLines
+    [Migration("20220922194423_TableCreationWithOwner")]
+    partial class TableCreationWithOwner
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,6 +44,8 @@ namespace dotnet_bakery.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("petOwner");
+
                     b.ToTable("Pets");
                 });
 
@@ -63,6 +65,17 @@ namespace dotnet_bakery.Migrations
                     b.HasKey("id");
 
                     b.ToTable("PetOwners");
+                });
+
+            modelBuilder.Entity("pet_hotel.Pet", b =>
+                {
+                    b.HasOne("pet_hotel.PetOwner", "ownedBy")
+                        .WithMany()
+                        .HasForeignKey("petOwner")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ownedBy");
                 });
 #pragma warning restore 612, 618
         }
