@@ -38,7 +38,7 @@ namespace pet_hotel
         [ForeignKey("ownedBy")]
         public int petOwner { get; set; }
 
-        // public Owner ownedBy {get;set;}
+        public PetOwner ownedBy {get;set;}
 
     }
 }

@@ -42,6 +42,8 @@ namespace dotnet_bakery.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("petOwner");
+
                     b.ToTable("Pets");
                 });
 
@@ -61,6 +63,17 @@ namespace dotnet_bakery.Migrations
                     b.HasKey("id");
 
                     b.ToTable("PetOwners");
+                });
+
+            modelBuilder.Entity("pet_hotel.Pet", b =>
+                {
+                    b.HasOne("pet_hotel.PetOwner", "ownedBy")
+                        .WithMany()
+                        .HasForeignKey("petOwner")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ownedBy");
                 });
 #pragma warning restore 612, 618
         }
