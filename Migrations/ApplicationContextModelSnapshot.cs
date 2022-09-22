@@ -60,7 +60,7 @@ namespace dotnet_bakery.Migrations
                     b.Property<string>("name")
                         .HasColumnType("text");
 
-                    b.Property<int>("petCount")
+                    b.Property<int>("petCount");
 
                     b.HasKey("id");
                     

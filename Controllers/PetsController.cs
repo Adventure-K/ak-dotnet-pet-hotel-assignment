@@ -37,6 +37,26 @@ namespace pet_hotel.Controllers
 
             return CreatedAtAction(nameof(Post), new {id = pet.id}, pet);
         }
+
+        // * DELETE route
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) {
+            Pet pet = _context.Pets.SingleOrDefault(p => p.id == id);
+
+            if (pet is null) {
+                return NotFound();
+            }
+
+            _context.Pets.Remove(pet);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+
+
+
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
