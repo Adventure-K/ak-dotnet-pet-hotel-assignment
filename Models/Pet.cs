@@ -35,10 +35,10 @@ namespace pet_hotel
         public PetColorType color { get; set; }
 
         public string checkedInAt { get; set; }
-        [ForeignKey("ownedBy")]
-        public int petOwner { get; set; }
+        [ForeignKey("petOwner")] // taco, but must match variable in 41
+        public int petOwnerid { get; set; }
 
-        public PetOwner ownedBy {get;set;}
+        public PetOwner petOwner {get;set;} // PetOwner - type. petOwner - variable
 
     }
 }
