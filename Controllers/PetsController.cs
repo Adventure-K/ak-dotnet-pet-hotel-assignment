@@ -26,7 +26,7 @@ namespace pet_hotel.Controllers
         public IEnumerable<Pet> GetPets() {
             Console.WriteLine("GET ALL PETS");
             // return new List<Pet>();
-            return _context.Pets.Include(Owner => Owner.ownedBy);
+            return _context.Pets.Include(Owner => Owner.petOwner);
             // return _context.Pets;
         }
 
